@@ -2,7 +2,7 @@ name: 🌞 Morning Premium Embed
 
 on:
   schedule:
-    - cron: '0 23 * * 1-7'   # 6h sáng Việt Nam (Thứ 2 → Chủ Nhật)
+    - cron: '0 23 * * *'   # 6h sáng Việt Nam (Thứ 2 → Chủ Nhật)
   workflow_dispatch:
 
 jobs:
