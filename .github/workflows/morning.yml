@@ -24,9 +24,9 @@ jobs:
           curl -H "Content-Type: application/json" \
           -d "{
             \"username\": \"Kumo UI\",
-            \"avatar_url\": \"https://i.imgur.com/7k12EPD.png\",
+            \"avatar_url\": \"https://i.ibb.co/B5N6tFhj/Le-Luoi.png\",
             \"embeds\": [{
-              \"title\": \"🌞 Chào buổi sáng!\",
+              \"title\": \"🌞 Chào buổi sáng !\",
               \"description\": \"**$MESSAGE**\",
               \"color\": 16760576,
               \"image\": {
