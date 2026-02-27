@@ -33,7 +33,7 @@ jobs:
                 \"url\": \"https://i.imgur.com/4M34hi2.png\"
               },
               \"footer\": {
-                \"text\": \"Kumo AI • Được làm bởi M.Quân\"
+                \"text\": \"Kumo UI • Được làm bởi M.Quân\"
               },
               \"timestamp\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"
             }]
