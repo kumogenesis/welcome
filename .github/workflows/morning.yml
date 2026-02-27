@@ -1,4 +1,4 @@
-name: Morning Premium Embed
+name: 🌞 Morning Premium Embed
 
 on:
   schedule:
@@ -9,16 +9,16 @@ jobs:
   send:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Embed
+      - name: 📲 Send Embed
         run: |
           DAY=$(date +%u)
 
           if [ "$DAY" -eq 1 ]; then
-            MESSAGE="💀 Thứ 2 rồi ,dậy đi các anh em!"
+            MESSAGE="💀 Thứ 2 rồi ,dậy đi các anh em <@&1443084214156263424> !"
           elif [ "$DAY" -eq 7 ]; then
-            MESSAGE="🌿 Chủ nhật chill nhưng nhớ chuẩn bị tuần mới!"
+            MESSAGE="🌿 Chủ nhật chill nhưng nhớ chuẩn bị tuần mới <@&1443084214156263424> !"
           else
-            MESSAGE="🚀 Chúc anh em một ngày đầy năng lượng!"
+            MESSAGE="🚀 Chúc anh em một ngày đầy năng lượng <@&1443084214156263424> !"
           fi
 
           curl -H "Content-Type: application/json" \
