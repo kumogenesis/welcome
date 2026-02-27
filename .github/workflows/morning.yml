@@ -1,0 +1,41 @@
+name: Morning Premium Embed
+
+on:
+  schedule:
+    - cron: '0 23 * * 1-7'   # 6h sáng Việt Nam (Thứ 2 → Chủ Nhật)
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Embed
+        run: |
+          DAY=$(date +%u)
+
+          if [ "$DAY" -eq 1 ]; then
+            MESSAGE="💀 Thứ 2 rồi ,dậy đi các anh em!"
+          elif [ "$DAY" -eq 7 ]; then
+            MESSAGE="🌿 Chủ nhật chill nhưng nhớ chuẩn bị tuần mới!"
+          else
+            MESSAGE="🚀 Chúc anh em một ngày đầy năng lượng!"
+          fi
+
+          curl -H "Content-Type: application/json" \
+          -d "{
+            \"username\": \"Kumo UI\",
+            \"avatar_url\": \"https://i.imgur.com/7k12EPD.png\",
+            \"embeds\": [{
+              \"title\": \"🌞 Chào buổi sáng!\",
+              \"description\": \"**$MESSAGE**\",
+              \"color\": 16760576,
+              \"image\": {
+                \"url\": \"https://i.imgur.com/4M34hi2.png\"
+              },
+              \"footer\": {
+                \"text\": \"Kumo AI • Được làm bởi M.Quân\"
+              },
+              \"timestamp\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"
+            }]
+          }" \
+          ${{ secrets.WEBHOOK_URL }} 
