@@ -2,7 +2,7 @@ name: 🌞 Morning Premium Embed
 
 on:
   schedule:
-    - cron: '45 22 * * *'   # 6h sáng Việt Nam (Thứ 2 → Chủ Nhật)
+    - cron: '45 22 * * *'   # 6:00 sáng Việt Nam (Nếu free plan)
   workflow_dispatch:
 
 jobs:
@@ -11,15 +11,30 @@ jobs:
     steps:
       - name: 📲 Send Embed
         run: |
-          DAY=$(date +%u)
+          TZ="Asia/Ho_Chi_Minh"
 
-          if [ "$DAY" -eq 2 ]; then
-            MESSAGE="💀 Thứ 2 rồi ,dậy đi các anh em <@&1443084214156263424> !"
-          elif [ "$DAY" -eq 1 ]; then
+          DAY_NUM=$(TZ=$TZ date +%u)
+
+          case $DAY_NUM in
+            1) DAY_NAME="Thứ Hai" ;;
+            2) DAY_NAME="Thứ Ba" ;;
+            3) DAY_NAME="Thứ Tư" ;;
+            4) DAY_NAME="Thứ Năm" ;;
+            5) DAY_NAME="Thứ Sáu" ;;
+            6) DAY_NAME="Thứ Bảy" ;;
+            7) DAY_NAME="Chủ Nhật" ;;
+          esac
+
+          if [ "$DAY_NUM" -eq 1 ]; then
+            MESSAGE="💀 Thứ 2 rồi, dậy đi các anh em <@&1443084214156263424> !"
+          elif [ "$DAY_NUM" -eq 7 ]; then
             MESSAGE="🌿 Chủ nhật chill nhưng nhớ chuẩn bị tuần mới <@&1443084214156263424> !"
           else
             MESSAGE="🚀 Chúc anh em một ngày đầy năng lượng <@&1443084214156263424> !"
           fi
+
+          DATE_TEXT=$(TZ=$TZ date +"%d tháng %m năm %Y lúc %H:%M")
+          ISO_TIME=$(TZ=$TZ date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           curl -H "Content-Type: application/json" \
           -d "{
@@ -28,14 +43,14 @@ jobs:
             \"embeds\": [{
               \"title\": \"🌞 Chào buổi sáng !\",
               \"description\": \"**$MESSAGE**\",
-              \"color\": 8900331,
+              \"color\": 16760576,
               \"image\": {
                 \"url\": \"https://i.imgur.com/4M34hi2.png\"
               },
               \"footer\": {
-                \"text\": \"Kumo UI • Được làm bởi M.Quân\"
+                \"text\": \"🗓️ Hôm nay là $DAY_NAME, ngày $DATE_TEXT • Kumo UI • Được làm bởi M.Quân 😊\"
               },
-              \"timestamp\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"
+              \"timestamp\": \"$ISO_TIME\"
             }]
           }" \
           ${{ secrets.WEBHOOK_URL }} 
