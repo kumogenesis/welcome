@@ -13,9 +13,9 @@ jobs:
         run: |
           DAY=$(date +%u)
 
-          if [ "$DAY" -eq 1 ]; then
+          if [ "$DAY" -eq 2 ]; then
             MESSAGE="💀 Thứ 2 rồi ,dậy đi các anh em <@&1443084214156263424> !"
-          elif [ "$DAY" -eq 7 ]; then
+          elif [ "$DAY" -eq 1 ]; then
             MESSAGE="🌿 Chủ nhật chill nhưng nhớ chuẩn bị tuần mới <@&1443084214156263424> !"
           else
             MESSAGE="🚀 Chúc anh em một ngày đầy năng lượng <@&1443084214156263424> !"
@@ -28,7 +28,7 @@ jobs:
             \"embeds\": [{
               \"title\": \"🌞 Chào buổi sáng !\",
               \"description\": \"**$MESSAGE**\",
-              \"color\": 16760576,
+              \"color\": 8900331,
               \"image\": {
                 \"url\": \"https://i.imgur.com/4M34hi2.png\"
               },
